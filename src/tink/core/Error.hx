@@ -27,23 +27,40 @@ enum abstract ErrorCode(Int) from Int to Int {
   var Forbidden = 403;
   var NotFound = 404;
   var MethodNotAllowed = 405;
-  var Gone = 410;
   var NotAcceptable = 406;
-  var Timeout = 408;
+  var ProxyAuthenticationRequired = 407;
+  var RequestTimeout = 408;
   var Conflict = 409;
+  var Gone = 410;
+  var LengthRequired = 411;
+  var PreconditionFailed = 412;
+  var PayloadTooLarge = 413;
+  var URITooLong = 414;
   var UnsupportedMediaType = 415;
-  var OutOfRange = 416;
+  var RangeNotSatisfiable = 416;
   var ExpectationFailed = 417;
-  var I_am_a_Teapot = 418;
-  var AuthenticationTimeout = 419;
+  var ImATeapot = 418;
+  var MisdirectedRequest = 421;
   var UnprocessableEntity = 422;
-
-  var InternalError = 500;
+  var Locked = 423;
+  var FailedDependency = 424;
+  var TooEarly = 425;
+  var UpgradeRequired = 426;
+  var PreconditionRequired = 428;
+  var TooManyRequests = 429;
+  var RequestHeaderFieldsTooLarge = 431;
+  var UnavailableForLegalReasons = 451;
+  var InternalServerError = 500;
   var NotImplemented = 501;
+  var BadGateway = 502;
   var ServiceUnavailable = 503;
+  var GatewayTimeout = 504;
+  var HTTPVersionNotSupported = 505;
+  var VariantAlsoNegotiates = 506;
   var InsufficientStorage = 507;
-  var BandwidthLimitExceeded = 509;
-
+  var LoopDetected = 508;
+  var NotExtended = 510;
+  var NetworkAuthenticationRequired = 511;
 }
 
 class TypedError<T> {
@@ -55,7 +72,7 @@ class TypedError<T> {
   public var exceptionStack(default, null):Stack;
   var isTinkError = true;
 
-  public function new(?code:ErrorCode = InternalError, message, ?pos) {
+  public function new(?code:ErrorCode = InternalServerError, message, ?pos) {
     this.code = code;
     this.message = message;
     this.pos = pos;
